@@ -6,9 +6,9 @@ import os.path
 note_dict = {}
 note_counter = 1
 
-def add_note(d: datetime.date, text: str):
+def add_note(d: str, text: str):
     global note_counter
-    note_dict[str(note_counter)] = {'date': str(d), 'text': text, 'state': "new"}
+    note_dict[str(note_counter)] = {'date': d, 'text': text, 'state': "new"}
     note_counter = note_counter + 1
 
 def write_note_dict(file_name: str):
@@ -23,19 +23,10 @@ def read_note_dict(file_name: str):
         note_dict = json.load(input_file)
         input_file.close()
         keys = [int(key) for key in note_dict]
-        note_counter = max(keys)
+        if len(keys) == 0:
+            note_counter =1
+        else:
+            note_counter = max(keys)
     else:
         note_dict = {}
         note_counter = 1
-
-if __name__=='__main__':
-    print('+')
-    print(note_counter)
-    add_note(datetime.date(datetime.now()), 'Hello, world!')
-    add_note(datetime.date(datetime.now()), '2')
-    print(note_dict)
-    write_note_dict('C:\\temp\\1.json')
-    note_dict={}
-    read_note_dict('C:\\temp\\1.json')
-    print(note_counter)
-    print(note_dict)
