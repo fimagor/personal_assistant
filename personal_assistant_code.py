@@ -102,10 +102,12 @@ if __name__=="__main__":
   scrollbar.config(command=lst.yview)
 
   # Создание кнопок
-  add_button = tk.Button(button_frame, text="Выполнено", command=cross_note)
+  add_button = tk.Button(button_frame, text="Добавить", command=add_cmd)
   add_button.pack(anchor="se")
-  add_button = tk.Button(button_frame, text="Отменить выполнение", command=uncross_note)
-  add_button.pack()
+  cross_button = tk.Button(button_frame, text="Выполнено", command=cross_note)
+  cross_button.pack(anchor="se")
+  uncross_button = tk.Button(button_frame, text="Отменить выполнение", command=uncross_note)
+  uncross_button.pack(anchor="se")
 
   notes.read_note_dict("notes.json")
   update_note_list()
